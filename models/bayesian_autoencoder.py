@@ -12,10 +12,12 @@ class BayesianAutoencoder(object):
     """
     def __init__(self, name,
                  n_inputs=784,
-                 n_neurons_encoder=[2048, 256],
+                 n_neurons_encoder=None,
                  n_latent=2,
-                 n_neurons_decoder=[256, 2048],
+                 n_neurons_decoder=None,
                  constant_prior=False):
+        n_neurons_encoder = [2048, 256] if n_neurons_encoder is None else n_neurons_encoder
+        n_neurons_decoder = [256, 2048] if n_neurons_decoder is None else n_neurons_decoder
         # SIZES
         tf.reset_default_graph()
         

@@ -9,11 +9,13 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 class VariationalAutoencoder(object):
     def __init__(self, name,
                  n_inputs=784,
-                 n_neurons_encoder = [2048, 256],
+                 n_neurons_encoder = None,
                  n_latent=2,
-                 n_neurons_decoder = [256, 2048],
+                 n_neurons_decoder = None,
                  batch_size = 128,
                  activation = tf.nn.tanh):
+        n_neurons_encoder = [2048, 256] if n_neurons_encoder is None else n_neurons_encoder
+        n_neurons_decoder = [256, 2048] if n_neurons_decoder is None else n_neurons_decoder
         
         tf.reset_default_graph()
         

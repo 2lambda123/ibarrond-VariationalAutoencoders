@@ -29,13 +29,18 @@ def lrelu(x, leak=0.2, name="lrelu"):
 class VariationalConvAutoencoder(object):
     def __init__(self, name,
                  n_inputs=784,
-                 n_conv_maps = [10, 10, 10],
-                 n_conv_filters = [3, 3, 3], 
-                 n_conv_strides = [2, 2, 2], 
-                 n_conv_padding = ['SAME', 'VALID', 'SAME'], 
-                 n_dense = [256, 128],
+                 n_conv_maps = None,
+                 n_conv_filters = None, 
+                 n_conv_strides = None, 
+                 n_conv_padding = None, 
+                 n_dense = None,
                  n_latent=2,
                  activation = lrelu):
+        n_conv_maps = [10, 10, 10] if n_conv_maps is None else n_conv_maps
+        n_conv_filters = [3, 3, 3] if n_conv_filters is None else n_conv_filters
+        n_conv_strides = [2, 2, 2] if n_conv_strides is None else n_conv_strides
+        n_conv_padding = ['SAME', 'VALID', 'SAME'] if n_conv_padding is None else n_conv_padding
+        n_dense = [256, 128] if n_dense is None else n_dense
         
         tf.reset_default_graph()
         
